@@ -28,9 +28,11 @@ public class Sort {
 
     /*直接选择排序*/
     public int[] directSort(int[] arr){
+        if(arr.length == 0)
+            return arr;
         for (int i = 0; i < arr.length - 1; i++) {
             int t = i;
-            for (int j = i+1; j < arr.length; j++) {
+            for (int j = i; j < arr.length; j++) {
                 if(arr[t] > arr[j])
                     t = j;
             }
@@ -57,7 +59,7 @@ public class Sort {
         if (first > last) return;
         int i = first;
         int j = last;
-       while (i != j){
+        while (i != j){
            while (arr[j] >= arr[first] && j >i){
                j--;
            }
@@ -69,12 +71,12 @@ public class Sort {
                arr[i] = arr[j];
                arr[j] = temp;
            }
-       }
-       if(i == j){
+        }
+        if(i == j){
            int temp = arr[i];
            arr[i] = arr[first];
            arr[first] = temp;
-       }
+        }
         firstBaseValue(arr,first,i-1);
         firstBaseValue(arr,i+1,last);
     }

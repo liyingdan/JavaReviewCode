@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class NewArray {
     public static void main(String[] args) {
         //一维数组
-        /*int[] arr1 = {1,2,3,4,5};
-
-        int arr2[] = new int[]{1,2,3,4,5};
-
-        int arr3[] = new int[5];
-        arr3[0] = 1;
-        arr3[1] = 2;
-
-        for (int i = 0; i < arr3.length; i++) {
-            System.out.print(arr3[i]); //12000
-        }*/
+//        int[] arr1 = {1,2,3,4,5};
+//
+//        int arr2[] = new int[]{1,2,3,4,5};
+//
+//        int arr3[] = new int[5];
+//        arr3[0] = 1;
+//        arr3[1] = 2;
+//
+//        for (int i = 0; i < arr3.length; i++) {
+//            System.out.print(arr3[i]); //12000
+//        }
 
 
         //二维数组
@@ -40,8 +40,6 @@ public class NewArray {
             }
             System.out.println();
         }
-
-
     }
 
 }
