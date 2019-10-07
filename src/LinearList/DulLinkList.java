@@ -5,6 +5,8 @@ import java.util.Scanner;
 /**
  * @author liyingdan
  * @date 2019/9/4
+ *
+ * 双向循环链表
  */
 public class DulLinkList implements Ilist {
     public DulNode head;
@@ -23,7 +25,8 @@ public class DulLinkList implements Ilist {
         this(); //上面的构造函数
         Scanner s = new Scanner(System.in);
         for (int j = 0; j < n; j++) {
-            insert(j, s.next());
+            insert(j, s.next()); //顺序创建
+//            insert(0, s.next()); //逆向创建
         }
     }
 
@@ -47,7 +50,7 @@ public class DulLinkList implements Ilist {
     }
 
     /**
-     * 带头结点的双向循环链表中的插入操作-----------不太懂if语句
+     * 带头结点的双向循环链表中的插入操作
      * */
     @Override
     public void insert(int i, Object x) throws Exception {
@@ -68,7 +71,7 @@ public class DulLinkList implements Ilist {
     }
 
     /**
-     * 在带头结点的双向循环链表中的删除操作 -------不太懂if语句，i= 0，head.next = head的情况呢？
+     * 在带头结点的双向循环链表中的删除操作 -------i= 0，head.next = head的情况呢？
      * */
     @Override
     public void remove(int i) throws Exception {

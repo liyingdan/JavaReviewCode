@@ -7,8 +7,7 @@ import java.util.Scanner;
 /**
  * @author liyingdan
  * @date 2019/9/3
- */
-/**
+
  * 单链表
  * */
 public class LinkList implements Ilist {
@@ -138,7 +137,7 @@ public class LinkList implements Ilist {
      * */
     public void remove1(Object x) throws Exception {
         Node p = head;
-        while (p.next != null && p.next.data != x){
+        while (p.next != null && !x.equals(p.next.data)){
             p = p.next;
         }
         if(p.next == null){
@@ -168,6 +167,7 @@ public class LinkList implements Ilist {
 
     @Override
     public void display() {
+        System.out.println("单链表为：");
         Node node = head.next;
         while (node != null){
             System.out.print(node.data+" ");
@@ -209,8 +209,8 @@ public class LinkList implements Ilist {
 
     /**
      * 把单链表分成两个链表，角标双数放一个表X，角标单数放一个表Y。（从0开始计数）
-     * 主单链表:1,2,3,4,5,6,7,8
-     * X:1,3,5,7
+     * 主单链表:1,2,3,4,5,6,7,8,9
+     * X:1,3,5,7,9
      * Y:2,4,6,8
      * */
     public void split(LinkList X, LinkList Y){
@@ -218,9 +218,9 @@ public class LinkList implements Ilist {
         Node x = X.head;
         Node y = Y.head;
         //此时X就是整个主链表，把角标为单数的结点干掉就行
-        x = p;
+        x.next = p;
         //Y链表是从角标第一个开始的主链表，把角标为双数的结点干掉就行
-        y = p.next;
+        y.next = p.next;
         //当结点x和y的后第三位都不为空时，去掉第二个结点（x为空为y一定为空）
         while (x.next.next.next != null && y.next.next.next != null){
             x.next.next = x.next.next.next;
@@ -241,19 +241,22 @@ public class LinkList implements Ilist {
      * 单链表的交替。把主单链表和单链表N，交替取数，为一个新单链表
      * A(主)：1,2,3,4,5  N：a,b,c,d,e ---> A:1,a,2,b,3,c,4,d,5,e
      * */
-    //???  p为空时？
+
     public void alternate(LinkList N){
         Node p = head.next;
         Node n = N.head.next;
-        while(p.next != null){
-            Node q = p.next;
-            Node m = n.next;
+        if(p == null){
+            head.next = n;
+        }else {
+            while(p.next != null){
+                Node q = p.next;
+                Node m = n.next;
+                p.next = n;
+                n.next = q;
+                p = q;
+                n = m;
+            }
             p.next = n;
-            n.next = q;
-            p = q;
-            n = m;
         }
-        p.next = n;
     }
-
 }

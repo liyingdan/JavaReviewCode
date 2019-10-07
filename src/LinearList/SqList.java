@@ -4,7 +4,9 @@ import java.util.zip.CRC32;
 
 /**
  * @author liyingdan
- * @date 2019/9/3
+ * @date 2019/9/
+ *
+ * 顺序表
  */
 public class SqList implements Ilist {
     private Object[] listElem; //线性表存储空间
