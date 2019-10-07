@@ -17,6 +17,11 @@ public class BiTree {
     //在递归进行线索化时，pre总是保留前一个结点
     public BiTreeNode pre = null;
 
+    //可以重载一下下面线索化的方法，如果嫌传参数麻烦的话
+    public void threadedNodes(){
+        this.threadedNodes(root);
+    }
+
     /**
      * 线索化二叉树
      *
@@ -42,10 +47,33 @@ public class BiTree {
         //！！每处理一个结点后，让当前结点是下一个结点的前驱结点
         pre = T;
 
-
         //3. 线索化右子树
         threadedNodes(T.rchild);
 
+    }
+
+    /**
+     * 遍历线索化二叉树的方法
+     * */
+    public void threadedList(){
+        //定义一个变量，存储当前遍历的结点，从root开始
+        BiTreeNode node = root;
+        while (node != null){
+            //循环找到leftType == 1 的结点
+            //处理后的有效结点
+            while (node.leftType == 0)
+                node = node.lchild;
+            //打印这个结点
+            System.out.print(node.data + " ");
+            //如果当前结点的右指针指向的是后继结点，就一直输出
+            while(node.rightType == 1){
+                //获取到当前结点的后继结点
+                node = node.rchild;
+                System.out.print(node.data + " ");
+            }
+            //替换这个遍历的结点
+            node = node.rchild;
+        }
     }
 
     //构造一棵空树
