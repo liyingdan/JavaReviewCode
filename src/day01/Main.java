@@ -7,43 +7,38 @@ package day01;
  */
 public class Main {
     private static Object lock = new Object();
+
     public static void main(String[] args) {
         new Thread(new Thread1()).start();
         new Thread(new Thread2()).start();
 
     }
-    //输出 1-52
+
     static class Thread1 implements Runnable{
         @Override
         public void run() {
-            int i = 1;
-            while (true){
+            for (int i = 1; i <= 52; i++) {
                 synchronized (lock){
-                    lock.notifyAll();
-                    for (; i <= 52; i++) {
-                        System.out.print(i);
-                        if(i % 2 == 0){
-                            try {
-                                lock.wait();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                    lock.notify();
+                    System.out.print(i);
+                    if(i % 2 == 0){
+                        try {
+                            lock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
             }
-
-
         }
     }
-    //输出A-Z
+
     static class Thread2 implements Runnable{
         @Override
         public void run() {
-            char a = 65;
-            synchronized (lock){
-                lock.notify();
-                for (; a <= 97; a++) {
+            for (char a = 65; a <= 97; a++) {
+                synchronized (lock){
+                    lock.notify();
                     System.out.print(a+" ");
                     try {
                         lock.wait();
@@ -52,7 +47,6 @@ public class Main {
                     }
                 }
             }
-
         }
     }
 
